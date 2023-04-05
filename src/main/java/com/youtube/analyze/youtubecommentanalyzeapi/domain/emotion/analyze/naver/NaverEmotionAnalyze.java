@@ -11,10 +11,10 @@ import org.springframework.web.client.RestTemplate;
 public class NaverEmotionAnalyze implements EmotionAnalyze<NaverEmotionResponseDto>{
     private final NaverCLOVA naverCLOVA;
     @Override
-    public NaverEmotionResponseDto analyze(String text, Class<NaverEmotionResponseDto> type) throws JsonProcessingException {
+    public NaverEmotionResponseDto analyze(String text, Class<NaverEmotionResponseDto> type)  {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForObject(naverCLOVA.getEmotionApiUrl(),
-                naverCLOVA.getHttpEntity(new NaverEmotionRequestDto(text).toJson()),
+                naverCLOVA.getHttpEntity(new NaverEmotionRequestDto(text)),
                 NaverEmotionResponseDto.class);
     }
 

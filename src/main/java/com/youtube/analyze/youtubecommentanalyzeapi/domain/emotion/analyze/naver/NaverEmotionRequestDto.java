@@ -14,9 +14,5 @@ public class NaverEmotionRequestDto {
         this.content = content;
     }
 
-    public String toJson() throws JsonProcessingException {
-        Map<String, String> map = new HashMap<>();
-        map.put("content", content);
-        return ObjectMapperSingleton.getObjectMapper().writeValueAsString(map);
-    }
+
 }
