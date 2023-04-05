@@ -1,5 +1,10 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.util.MultiValueMap;
+
 import java.util.Map;
 
 public class NaverCLOVA {
@@ -11,5 +16,18 @@ public class NaverCLOVA {
         this.client_id = client_id;
         this.client_secret = client_secret;
         this.api_urls = api_urls;
+    }
+    public String getEmotionApiUrl() {
+        return api_urls.get("emotion");
+    }
+    public HttpHeaders getHeaders() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-NCP-APIGW-API-KEY-ID", client_id);
+        headers.set("X-NCP-APIGW-API-KEY", client_secret);
+        headers.set("Content-Type", "application/json");
+        return headers;
+    }
+    public HttpEntity getHttpEntity(String json) {
+        return new HttpEntity<>(json, getHeaders());
     }
 }
