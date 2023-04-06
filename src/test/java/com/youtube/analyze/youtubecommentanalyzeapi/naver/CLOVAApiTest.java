@@ -1,15 +1,8 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.naver;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver.NaverCLOVA;
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver.NaverEmotionRequestDto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
 
 @SpringBootTest
 class CLOVAApiTest {
