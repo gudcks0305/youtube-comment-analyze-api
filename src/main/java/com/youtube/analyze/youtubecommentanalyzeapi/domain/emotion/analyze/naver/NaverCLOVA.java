@@ -1,9 +1,10 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.youtube.analyze.youtubecommentanalyzeapi.global.utils.ObjectMapperSingleton;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.util.MultiValueMap;
 
 import java.util.Map;
 
@@ -27,7 +28,14 @@ public class NaverCLOVA {
         headers.set("Content-Type", "application/json");
         return headers;
     }
-    public HttpEntity getHttpEntity(String json) {
-        return new HttpEntity<>(json, getHeaders());
+    public HttpEntity getHttpEntity(Object object) {
+        try {
+            return new HttpEntity<>(ObjectMapperSingleton.getInstance().writeValueAsString(object), getHeaders());
+        } catch (JsonProcessingException jsonProcessingException){
+            throw new RuntimeException(jsonProcessingException);
+        } catch (Exception exception) {
+            throw new RuntimeException(exception);
+        }
+
     }
 }

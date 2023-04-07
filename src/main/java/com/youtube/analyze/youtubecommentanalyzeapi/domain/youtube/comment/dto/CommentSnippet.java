@@ -1,5 +1,8 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.youtube.comment.dto;
 
+import lombok.Getter;
+
+@Getter
 public class CommentSnippet {
     private String authorDisplayName;
     private String authorProfileImageUrl;

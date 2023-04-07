@@ -8,7 +8,7 @@ import java.util.Map;
 
 @Configuration
 public class YoutubeAPIConfig {
-    @Value("${google.cloud.youtube.data.key}")
+    @Value("${google.cloud.youtube.data.key:dummy}")
     private String apiKey;
 
     private final Map<String, String> urls = Map.of(
