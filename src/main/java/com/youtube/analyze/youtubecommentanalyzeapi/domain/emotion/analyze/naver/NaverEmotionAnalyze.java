@@ -18,9 +18,12 @@ public class NaverEmotionAnalyze implements EmotionAnalyze {
     @Override
     public NaverEmotionResponseDto analyze(String text) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject(naverCLOVA.getEmotionApiUrl(),
+        NaverEmotionResponseDto naverEmotionResponseDto = restTemplate.postForObject(naverCLOVA.getEmotionApiUrl(),
                 naverCLOVA.getHttpEntity(new EmotionRequestDto(text)),
                 NaverEmotionResponseDto.class);
+        assert naverEmotionResponseDto != null;
+        naverEmotionResponseDto.setContent(text);
+        return naverEmotionResponseDto;
     }
 
 }

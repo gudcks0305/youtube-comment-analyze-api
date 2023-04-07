@@ -5,18 +5,15 @@ import lombok.Getter;
 @Getter
 public class CommentSnippet {
     private String authorDisplayName;
-    private String authorProfileImageUrl;
-    private String authorChannelUrl;
-    private String channerId;
-    private String videoId;
-    private String textDisplay;
+
     private String textOriginal;
-    private String parentId;
-    private boolean canRate;
-    private String viewerRating;
+
+    public CommentSnippet(String authorDisplayName, String textOriginal, int likeCount) {
+        this.authorDisplayName = authorDisplayName;
+        this.textOriginal = textOriginal;
+        this.likeCount = likeCount;
+    }
+
     private int likeCount;
-    private String moderationStatus;
-    private String publishedAt;
-    private String updatedAt;
 
 }
