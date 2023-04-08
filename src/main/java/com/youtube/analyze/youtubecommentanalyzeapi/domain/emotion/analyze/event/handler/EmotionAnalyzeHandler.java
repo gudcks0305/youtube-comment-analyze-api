@@ -32,7 +32,6 @@ public class EmotionAnalyzeHandler {
             emotionAsync.add(future);
         });
         // TODO  : Processing OUTPUT example : excel, csv, json, etc...
-        System.out.println(emotionAsync.get(0).join() + "gergregerg");
         SXSSFWorkbook sxssfWorkbook = MakeExcelUtil.makeExcel(emotionAsync.get(0).join());
         for (CompletableFuture<EmotionResponse> emotionResponseCompletableFuture : emotionAsync) {
             MakeExcelUtil.writeExcel(sxssfWorkbook, emotionResponseCompletableFuture.join());

@@ -1,5 +1,6 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver;
 
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.Confidence;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ public class NaverEmotionResponseDto extends EmotionResponse {
     }
 
     @Override
-    public Map<String, Double> getConfidence() {
+    public Confidence getConfidence() {
         return document.getConfidence();
     }
 
@@ -33,7 +34,7 @@ public class NaverEmotionResponseDto extends EmotionResponse {
     @Getter
     public static class Document {
         private String sentiment;
-        private Map<String, Double> confidence;
+        private Confidence confidence;
     }
 
 
