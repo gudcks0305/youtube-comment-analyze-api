@@ -24,8 +24,9 @@ public class YoutubeAnalyzeService {
         List<EmotionRequestDto> commentResponseDtos = getCommentThreads(videoId);
         // findBy bean name
         // String anlyzeType 로 시작하는 analyzeType bean 을 찾아서 사용
+        System.out.println(AnalyzeType.NAVER.getType());
         AnalyzeType analyze = Arrays.stream(AnalyzeType.values())
-                .filter(analyzeType1 -> analyzeType1.getType().startsWith(analyzeType))
+                .filter(analyzeType1 -> analyzeType1.getType().toLowerCase().startsWith(analyzeType.toLowerCase()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Not found emotion analyze bean"));
         applicationEventPublisher.publishEvent(new EmotionAnalyzeEvent(this, commentResponseDtos, analyze));

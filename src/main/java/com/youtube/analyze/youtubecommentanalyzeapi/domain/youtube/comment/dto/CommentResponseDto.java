@@ -5,6 +5,7 @@ import lombok.Getter;
 
 @Getter
 public class CommentResponseDto extends EmotionRequestDto {
+
     private String kind;
     private String etag;
     private String id;
