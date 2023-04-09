@@ -1,6 +1,6 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.excel;
 
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
+import com.youtube.analyze.youtubecommentanalyzeapi.global.utils.ReflectionUtils;
 import org.apache.poi.xssf.streaming.SXSSFCell;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
@@ -8,44 +8,42 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class MakeExcelUtil {
-    public static SXSSFWorkbook makeExcel(EmotionResponse response) {
+    public static SXSSFWorkbook makeExcel(Object response) {
         SXSSFWorkbook workbook = new SXSSFWorkbook();
         SXSSFSheet sheet = workbook.createSheet("sheet1");
         SXSSFRow row = sheet.createRow(0);
-        SXSSFCell cell = row.createCell(0);
-        cell.setCellValue("comment");
-        cell = row.createCell(1);
-        cell.setCellValue("sentiment");
-        for (Field field : response.getConfidence().getClass().getDeclaredFields()) {
-            cell = row.createCell(row.getLastCellNum());
-            cell.setCellValue(field.getName());
+        List<String> fieldNames = new ArrayList<>();
+        ReflectionUtils.recursiveGetFieldNamesWithOutObject(fieldNames, response.getClass());
+        for (int i = 0; i < fieldNames.size(); i++) {
+            SXSSFCell cell = row.createCell(i);
+            cell.setCellValue(fieldNames.get(i));
         }
+
         return workbook;
     }
 
-    public static void writeExcel(SXSSFWorkbook workbook, EmotionResponse response) {
+    public static void writeExcel(SXSSFWorkbook workbook, Object response) {
         SXSSFSheet sheet = workbook.getSheetAt(0);
         SXSSFRow row;
         SXSSFCell cell;
         row = sheet.createRow(sheet.getLastRowNum() + 1);
-        cell = row.createCell(0);
-        cell.setCellValue(response.getContent());
-        cell = row.createCell(row.getLastCellNum());
-        cell.setCellValue(response.getSentiment());
-        Field[] fields = response.getConfidence().getClass().getDeclaredFields();
-        for (Field field : fields) {
-            cell = row.createCell(row.getLastCellNum());
-            try {
-                field.setAccessible(true);
-                cell.setCellValue((Double) field.get(response.getConfidence()));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+
+        List<String> fieldNames = new ArrayList<>();
+        ReflectionUtils.recursiveGetFieldNamesWithOutObject(fieldNames, response.getClass());
+        Map<String, String> fieldNamesMap = fieldNames.stream().collect(Collectors.toMap(Function.identity(), Function.identity()));
+        ReflectionUtils.recursiveSetValueByFieldNames(response, fieldNamesMap);
+        for (String fieldName : fieldNames) {
+            cell = row.createCell(row.getLastCellNum() == -1 ? 0 : row.getLastCellNum());
+            cell.setCellValue(fieldNamesMap.get(fieldName));
         }
     }
 

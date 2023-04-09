@@ -1,5 +1,6 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.excel;
 
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.Confidence;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver.NaverEmotionResponseDto;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -17,17 +18,23 @@ class MakeExcelUtilTest {
 
     @Test
     void makeExcel() {
-       /* List<EmotionResponse> emotionResponseDtoList = new ArrayList<>();
+        List<EmotionResponse> emotionResponseDtoList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             emotionResponseDtoList.add(
-                    new NaverEmotionResponseDto("가슴에 화살이 날아와 꽃힌다...", "negative", Map.of("negative", 0.9999, "positive", 0.0001)
-                    ));
+                    new NaverEmotionResponseDto(
+                            "content" + i,
+                            new NaverEmotionResponseDto.Document(
+                                    "sentiment" + i,
+                                    new Confidence(0.1, 0.2, 0.3)
+                            )
+                    )
+            );
         }
         SXSSFWorkbook sxssfWorkbook = MakeExcelUtil.makeExcel(emotionResponseDtoList.get(0));
-        for (int i = 1; i < emotionResponseDtoList.size(); i++) {
-            MakeExcelUtil.writeExcel(sxssfWorkbook, emotionResponseDtoList.get(i));
+        for (EmotionResponse emotionResponse : emotionResponseDtoList) {
+            MakeExcelUtil.writeExcel(sxssfWorkbook, emotionResponse);
         }
-        MakeExcelUtil.fileUpload(sxssfWorkbook);*/
+        MakeExcelUtil.fileUpload(sxssfWorkbook);
 
     }
 }

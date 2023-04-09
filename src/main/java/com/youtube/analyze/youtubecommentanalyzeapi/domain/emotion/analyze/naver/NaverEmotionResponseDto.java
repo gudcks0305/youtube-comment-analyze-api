@@ -2,6 +2,7 @@ package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.nave
 
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.Confidence;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import java.util.Map;
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class NaverEmotionResponseDto extends EmotionResponse {
     // TODO response field add
     @Setter
@@ -32,6 +34,7 @@ public class NaverEmotionResponseDto extends EmotionResponse {
 
 
     @Getter
+    @AllArgsConstructor
     public static class Document {
         private String sentiment;
         private Confidence confidence;
