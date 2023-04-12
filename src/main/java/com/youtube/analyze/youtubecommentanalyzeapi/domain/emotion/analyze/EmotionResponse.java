@@ -1,4 +1,4 @@
-package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event;
+package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze;
 
 public abstract class EmotionResponse {
     public abstract String getContent();

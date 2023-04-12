@@ -1,4 +1,4 @@
-package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event;
+package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
