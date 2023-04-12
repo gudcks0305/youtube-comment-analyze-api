@@ -1,12 +1,11 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.reflection;
 
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.Confidence;
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.Confidence;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver.NaverEmotionResponseDto;
 import com.youtube.analyze.youtubecommentanalyzeapi.global.utils.ReflectionUtils;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
-import java.sql.Ref;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -2,7 +2,7 @@ package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.even
 
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.EmotionAnalyze;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionAnalyzeEvent;
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.EmotionResponse;
 import com.youtube.analyze.youtubecommentanalyzeapi.domain.excel.MakeExcelUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;

@@ -1,13 +1,12 @@
 package com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.naver;
 
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.Confidence;
-import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.event.EmotionResponse;
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.Confidence;
+import com.youtube.analyze.youtubecommentanalyzeapi.domain.emotion.analyze.EmotionResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Map;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
